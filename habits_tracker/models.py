@@ -15,6 +15,9 @@ class Person(models.Model):
     def __str__(self):
         return f"{self.f_name}, {self.l_name} {self.age}"
 
+    def get_absolute_url(self):
+        return reverse("model_detail", kwargs={"pk": self.pk})
+
 
 class Goal(models.Model):
     person = models.ForeignKey(

@@ -10,6 +10,10 @@ __pycache__/
 # to do list
 to_list.txt
 
+
+#
+staticfiles/
+
 # Distribution / packaging
 .Python
 build/

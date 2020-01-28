@@ -119,8 +119,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-STATIC_URL = '/static/'
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/')
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+]
 
 STATICFILES_FINDERS = [
     # First add the two default Finders, since this will overwrite the default.
@@ -132,9 +136,11 @@ STATICFILES_FINDERS = [
 ]
 
 
+TEMPLATE_DIR = os.path.join(BASE_DIR, 'habits_tracker/templates')
+LOGIN_REDIRECT_URL = 'habits:homepage'
+
+
 BULMA_SETTINGS = {
     "extensions": [
-        "bulma-accordion",
-        "bulma-calendar",
     ],
 }
