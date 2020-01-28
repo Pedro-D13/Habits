@@ -1,0 +1,23 @@
+{% extends "habits/base.html" %}
+
+{% block content %}
+
+<div class="content">
+    <form method="POST">
+        {% csrf_token %}
+
+        <div class="field">
+            <legend class=""> Join today </legend>
+            {{form}}
+        </div>
+        <div>
+            <button class="button is-link" type="submit"> Sign Up </button>
+
+        </div>
+    </form>
+    <div class="">
+        <small> already have an account ?</small>
+        <a href="#"> Sign In</a>
+    </div>
+</div>
+{% endblock content %}

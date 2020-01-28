@@ -5,6 +5,5 @@ from django.views.generic import DetailView, ListView
 
 
 class PersonView(ListView):
-
     model = Person
     template_name = 'habits/index.html'
