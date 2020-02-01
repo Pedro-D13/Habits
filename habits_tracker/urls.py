@@ -1,9 +1,9 @@
 from django.urls import path
 
-from .views import *
+from habits_tracker import views
 
-app_name = 'habits'
+APP_NAME = "habits"
 urlpatterns = [
-    path('', PersonView.as_view(), name='homepage')
+    path('', views.Home, name='homepage')
     # path('<int:pk>/', views.HbaitDetailView.as_view(), )
 ]

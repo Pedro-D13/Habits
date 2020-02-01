@@ -2,26 +2,26 @@
 
 
 {%block content %}
+<div class="hero">
+    <h1> Welcome to the habit tracker </h1>
+    <h2> “People think focus means saying yes to the thing you've got to focus on. But that's not what it means
+        at all. It means
+        saying no to the hundred other good ideas that there are. You have to pick carefully. <cite> Steve jobs
+        </cite> </h2>
+</div>
 <div class="container">
-    <div class="hero">
-        <h1> Welcome to the habit tracker </h1>
-        <h2> “People think focus means saying yes to the thing you've got to focus on. But that's not what it means
-            at all. It means
-            saying no to the hundred other good ideas that there are. You have to pick carefully. <cite> Steve jobs
-            </cite> </h2>
-    </div>
-    <div class="container">
-        <div class="content">
-            <p class="is-large"> the average human life span is 80 years, which equates to * ~ 29220 ~ * days </p>
-            <p class="is-medium"> it takes two weeks to solidify a habit, which is 14 days, which is minscule in
-                comparison</p>
-            <p class="is-medium"> with some perspective given on how relatively easy it should be to put some effort
-                for
-                two weeks, <br>
-                then lets begin
-                <a href=" {% url 'register' %}"> click here</a>
-            </p>
-        </div>
+    <div class="content">
+        <p class="is-large"> the average human life span is 80 years, which equates to * ~ 29220 ~ * days </p>
+        <p class="is-medium"> it takes two weeks to solidify a habit, which is 14 days, which is minscule in
+            comparison</p>
+        <p class="is-medium"> with some perspective given on how relatively easy it should be to put some effort
+            for
+            two weeks, <br>
+            then lets begin
+            <a class="" href=" {% url 'register' %}"> click here</a>
+        </p>
+
     </div>
 </div>
+
 {% endblock content %}
