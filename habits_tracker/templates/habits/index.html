@@ -2,26 +2,76 @@
 
 
 {%block content %}
-<div class="hero">
-    <h1> Welcome to the habit tracker </h1>
-    <h2> “People think focus means saying yes to the thing you've got to focus on. But that's not what it means
-        at all. It means
-        saying no to the hundred other good ideas that there are. You have to pick carefully. <cite> Steve jobs
-        </cite> </h2>
-</div>
-<div class="container">
-    <div class="content">
-        <p class="is-large"> the average human life span is 80 years, which equates to * ~ 29220 ~ * days </p>
-        <p class="is-medium"> it takes two weeks to solidify a habit, which is 14 days, which is minscule in
-            comparison</p>
-        <p class="is-medium"> with some perspective given on how relatively easy it should be to put some effort
-            for
-            two weeks, <br>
-            then lets begin
-            <a class="" href=" {% url 'register' %}"> click here</a>
-        </p>
-
+<!-- Hero Intro -->
+<section class="hero">
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title">
+                Habby the habit Tracker
+            </h1>
+            <h2 class="subtitle">
+                Track them to change them!
+            </h2>
+        </div>
     </div>
-</div>
+</section>
+<!-- End intro -->
 
+<!-- Content section -->
+<section class="hero is-medium is-primary is-bold">
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title">
+                Did you know?</h1>
+            <h2 class="subtitle">
+                Maxwell Maltz, an American cosmetic surgeon and author of Psycho-Cybernetics, believed it took
+                <strong>21 days</strong> to form a new
+                habit,this is a common
+                misconception as it takes much longer than that around 2 months, infact <strong> 66 days </strong>.
+            </h2>
+            <p class="is-medium"> the average human life span is <strong> 80 years </strong>, which
+                equates to around
+                <strong> 29220 days </strong>
+                So in the grand Scheme of things you're spending
+                <div class="container is-rounded has-background-info">
+                    <p class="is-large has-text-centered " id="tochange"> </p>
+                </div>
+            </p>
+            <button class="button is-rounded is-info" id="ageInputQ" onclick="ageInput()"> click to check</button>
+            <!-- Create a web component which asks the age and returns/ a calculation of the persons age -->
+            <a class="button is-link is-centered" href=" {% url 'register' %}"> Join today</a>
+        </div>
+    </div>
+    <div class="hero-foot">
+        <nav class="tabs is-toggle is-toggle-rounded is-fullwidth">
+            <div class="container">
+                <ul>
+                    <li class="is-active">
+                        <a>Reasons to join</a>
+                    </li>
+                    <li>
+                        <a>Motivation</a>
+                    </li>
+                    <li>
+                        <a> Pomodoro Technique & Timer </a>
+                    </li>
+                </ul>
+                <!-- all of these tabs below should be hidden until clicked -->
+            </div>
+        </nav>
+        <div class="box is-hidden">
+            <h2> “People think focus means saying yes to the thing you've got to focus on. But that's not what
+                it means
+                at all. It means
+                saying no to the hundred other good ideas that there are.</h2><br>
+            <p class=""> You have to pick carefully.
+                <cite>
+                    Steve jobs
+                </cite>
+            </p>
+
+        </div>
+    </div>
+</section>
+<!-- End of content -->
 {% endblock content %}
