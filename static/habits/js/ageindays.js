@@ -12,7 +12,7 @@ function ageInput() {
         // let ans = initial / ageInDays * ageInput;
         let ans2 = Math.round(ageInDays - (ageInput * 365.25))
         // document.getElementById("tochange").innerHTML = ans + "is the percentage of days ";
-        document.getElementById("tochange").innerHTML = ans2 + ": is the number of days you have remaining on average to change your life<br>click below and Join Today!";
+        document.getElementById("tochange").innerHTML = ans2 + " days" + ": is the number of days you have remaining on average to change your life<br>click below and start today!";
     } else if (ageInput == null || ageInput == "") {
         return;
     } else {

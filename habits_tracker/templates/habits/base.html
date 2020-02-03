@@ -17,11 +17,14 @@
     {% bulma %}
     {% font_awesome %}
 </head>
+<!-- Navigation block -->
+
 {% block nav %}
 <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
-        <a class="navbar-item" href="https://bulma.io">
-            <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
+        <a class="navbar-item" href="{% url 'homepage' %}">
+            <!-- <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28"> -->
+            <h1> 📋 Habby ⏳ </h1>
         </a>
         <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
             data-target="navbarBasicExample">
@@ -73,35 +76,33 @@
 </nav>
 {% endblock nav%}
 <!-- End Navigation -->
+<!-- Messages/Alerts block  -->
+{% block messages %}
+{% if messages %}
+{% for message in messages %}
+<article class="message">
+    <div class="message-header">
+        <p> Messages </p>
+        <button class="delete" aria-label="delete"></button>
+    </div>
+    <div class="message-body">
+        {{message}}
+    </div>
+</article>
+{% endfor %}
+{% endif %}
+{% endblock messages %}
+<!-- End Messages/Alerts -->
 
 <body>
-    <!-- Navigation block -->
+    <!-- Sctn1 block  -->
 
-    <!-- Messages/Alerts block  -->
-    <div class="container">
-        {% block message %}
-        {% if messages %}
-        {% for message in messages %}
-        <div class="modal">
-            <div class="modal-background"></div>
-            <div class="modal-content">
-                {{message}}
-            </div>
-            <button class="modal-close is-large" aria-label="close"></button>
-        </div>
-        {% endfor %}
-        {% endif %}
-        {% endblock %}
-        <!-- End Messages/Alerts -->
+    <!-- End Sctn1 block -->
+    {% block content %}
+    {% endblock content %}
 
-        <!-- Sctn1 block  -->
-
-        <!-- End Sctn1 block -->
-        {% block content %}
-        {% endblock content %}
-
-        {% block sctn1 %}
-        {%endblock sctn1%}
+    {% block sctn1 %}
+    {%endblock sctn1%}
     </div>
     <script src="{% static 'habits/js/navbar.js' %}" defer></script>
 </body>
