@@ -144,3 +144,7 @@ BULMA_SETTINGS = {
     "extensions": [
     ],
 }
+
+
+
+LOGIN_REDIRECT_URL = 'homepage'

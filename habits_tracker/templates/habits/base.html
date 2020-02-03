@@ -1,5 +1,4 @@
 {% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -59,19 +58,33 @@
                 </div>
             </div>
         </div>
-
+        {% if is_authenticated %}
         <div class="navbar-end">
             <div class="navbar-item">
                 <div class="buttons">
-                    <a class="button is-primary">
+                    <a href="{% url 'register' %}" class="button is-primary">
                         <strong>Sign up</strong>
                     </a>
-                    <a class="button is-light">
+                    <a href="{% url 'login' %}" class="button is-light">
                         Log in
                     </a>
                 </div>
             </div>
         </div>
+        {% else %}
+        <div class="navbar-end">
+            <div class="navbar-item">
+                <div class="buttons">
+                    <a href="{% url 'profile' %}" class="button is-outlined">
+                        <strong>Profile</strong>
+                    </a>
+                    <a href="{% url 'logout' %}" class="button is-link">
+                        Logout
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endif %}
     </div>
 </nav>
 {% endblock nav%}
@@ -95,15 +108,27 @@
 <!-- End Messages/Alerts -->
 
 <body>
-    <!-- Sctn1 block  -->
-
-    <!-- End Sctn1 block -->
     {% block content %}
     {% endblock content %}
+    <!-- Sctn1 block  -->
 
     {% block sctn1 %}
     {%endblock sctn1%}
-    </div>
+    <!-- End Sctn1 block -->
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="content has-text-centered">
+            <p>
+                <strong>Habby the habit tracker</strong> by <a href="https://github.com/Pedro-D13/">Pedro Dias</a>.
+                The source
+                code is licensed
+                <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
+                is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"> {% lorem 5 w random %}</a>.
+            </p>
+        </div>
+    </footer>
+    <!-- End Footer -->
     <script src="{% static 'habits/js/navbar.js' %}" defer></script>
 </body>
 

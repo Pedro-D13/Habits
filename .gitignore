@@ -9,7 +9,8 @@ __pycache__/
 
 # to do list
 to_list.txt
-
+# VSCODE
+.vscode/
 
 #
 staticfiles/

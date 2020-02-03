@@ -1,0 +1,15 @@
+{% extends 'habits/base.html' %}
+
+{% block content %}
+<div class="hero">
+    <div class="hero-body">
+        <div class="container has-text-centered">
+            <h2> You have logged out </h2>
+            <h1> I hope leaving isn't a new habit you're forming </h1>
+            <div>
+                <small> <a href="{% url 'login' %}"> Login again</a></small>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

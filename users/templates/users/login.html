@@ -1,0 +1,35 @@
+{% extends "habits/base.html" %}
+
+{% block content %}
+<div class="section">
+    <div class="container">
+        <form method="POST">
+            {% csrf_token %}
+            <div class="field">
+                <label for="id_username" class="label">Username</label>
+                <div class="control">
+                    <input type="text" name="username" autofocus autocapitalize="none" autocomplete="username"
+                        maxlength="150" required id="id_username" class="input" placeholder="UrAwesome5000😎">
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label">Passsword</label>
+                <div class="control">
+                    <input type="password" name="password" autocomplete="current-password" required id="id_password"
+                        class="input" placeholder="🙅‍♀password123🙅‍♀">
+                </div>
+            </div>
+            <div class="field is-grouped">
+                <div class="control">
+                    <button class="button is-link" type="submit">Login</button>
+                </div>
+                <div class="control">
+                    <a class="button is-link is-light" href="{% url 'register' %}">Need an account</a>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+{% endblock content %}
