@@ -146,5 +146,5 @@ BULMA_SETTINGS = {
 }
 
 
-
 LOGIN_REDIRECT_URL = 'homepage'
+LOGIN_URL = 'login'

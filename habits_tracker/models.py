@@ -1,6 +1,7 @@
 import datetime as dt
 
 from django.db import models
+from django.contrib.auth.models import User
 from django.db.models import Case, Value, When
 from datetime import date, timedelta
 
@@ -11,6 +12,7 @@ class Person(models.Model):
     f_name = models.CharField(max_length=40)
     l_name = models.CharField(max_length=40)
     age = models.SmallIntegerField(default=0)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return f"{self.f_name}, {self.l_name} {self.age}"

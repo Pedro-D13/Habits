@@ -35,7 +35,7 @@
 
     <div id="navbarBasicExample" class="navbar-menu">
         <div class="navbar-start">
-            <a class="navbar-item">
+            <a href="{% url 'homepage' %}" class="navbar-item">
                 Home
             </a>
             <div class="navbar-item has-dropdown is-hoverable">
@@ -58,15 +58,14 @@
                 </div>
             </div>
         </div>
-        {% if is_authenticated %}
-        <div class="navbar-end">
+        {% if user.is_authenticated %}.<div class="navbar-end">
             <div class="navbar-item">
                 <div class="buttons">
-                    <a href="{% url 'register' %}" class="button is-primary">
-                        <strong>Sign up</strong>
+                    <a href="{% url 'profile' %}" class="button is-outlined">
+                        <strong>Profile</strong>
                     </a>
-                    <a href="{% url 'login' %}" class="button is-light">
-                        Log in
+                    <a href="{% url 'logout' %}" class="button is-link">
+                        Logout
                     </a>
                 </div>
             </div>
@@ -75,11 +74,11 @@
         <div class="navbar-end">
             <div class="navbar-item">
                 <div class="buttons">
-                    <a href="{% url 'profile' %}" class="button is-outlined">
-                        <strong>Profile</strong>
+                    <a href="{% url 'register' %}" class="button is-primary">
+                        <strong>Sign up</strong>
                     </a>
-                    <a href="{% url 'logout' %}" class="button is-link">
-                        Logout
+                    <a href="{% url 'login' %}" class="button is-light">
+                        Log in
                     </a>
                 </div>
             </div>
