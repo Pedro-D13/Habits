@@ -12,21 +12,12 @@
                     <h2 class="subtitle">
                         track the goals you've set
                     </h2>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="column">
-        <div class="hero is-success">
-            <div class="hero-body">
-                <div class="container">
-                    <h1 class="title">
-                        Primary title
                     </h1>
-                    <h2 class="subtitle">
-                        Primary subtitle
-                    </h2>
+                    {% for goal in goal_list %}
+                    <li> {{ goal.user }} </li>
+                    {% endfor %}
                 </div>
+                {{ user.username }}
             </div>
         </div>
     </div>
