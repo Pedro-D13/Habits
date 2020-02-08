@@ -3,7 +3,7 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import UserRegisterForm
-
+from users.models import Profile
 
 # Create your views here.
 
@@ -25,6 +25,6 @@ def register(request):
 
 
 @login_required
-def profile(request, current_user):
-    user_profile = Profile.objects.filter(user=current_user)
+def profile(request):
+    user_profile = Profile.objects.filter(user=request.user)
     return render(request, 'users/profile.html', {'user_person': user_profile})
