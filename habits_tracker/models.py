@@ -1,6 +1,7 @@
-import datetime as dt
 
+import datetime as dt
 from django.db import models
+from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import User
 # from django.db.models import Case, Value, When
 from datetime import date, timedelta
@@ -8,22 +9,25 @@ from users.models import Profile
 # Create your models here.
 
 
-GOAL_CHECKBOX = [
-    ('TS', 'To start'),
-    ('PR', 'progressing'),
-    ('AC', 'Achieved'),
-]
-
-
 class Goal(models.Model):
+    TS = 'To Start'
+    PR = 'In Progress'
+    AC = 'Achieved'
+    GoalCheckBox = [
+        (TS, 'To Start'),
+        (PR, 'In Progress'),
+        (AC, 'Achieved')
+    ]
     profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
     goal_title = models.CharField(max_length=25)
-    goal_status = models.CharField(choices=GOAL_CHECKBOX, max_length=20)
+    goal_status = models.CharField(
+        choices=GoalCheckBox,
+        default=TS,
+        max_length=11)
     mantra = models.TextField()
 
     def __str__(self):
-        return f"{self.goal_title}:{self.goal_status}"
-
+        return f"{self.goal_title} {self.goal_status}"
     # #     def get_absolute_url(self):
     # #         return reverse("model_detail", kwargs={"pk": self.pk})
 

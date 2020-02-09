@@ -6,20 +6,36 @@
         <div class="hero is-primary">
             <div class="hero-body">
                 <div class="container">
-                    <h1 class="title">
-                        Goals
-                    </h1>
-                    <h2 class="subtitle">
-                        track the goals you've set
-                    </h2>
-                    </h1>
-                    {% for goal in goal_list %}
-                    <li> {{ goal.user }} </li>
-                    {% endfor %}
+                    <h1 class="title has-text-centered"> Dash Board </h1>
                 </div>
-                {{ user.username }}
             </div>
-            <h1 class="title"> {% if iamcontext %} hi {% else %} no {% endif %}</h1>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <h1 class="title">
+        {{user}} Goals
+    </h1>
+    <h2 class="subtitle">
+        track the goals you've set
+    </h2>
+    <div class="columns">
+        <div class="column">
+            <ol class="1">
+                {% for goal in goals %}
+                <li> {{goal.goal_title}} </li>
+                {% endfor %}
+            </ol>
+        </div>
+        <div class="column">
+            <ol class="1">
+                {% for goal in goals %}
+                <li> {{goal.goal_status}} </li>
+                {% empty %}
+                <li> ----- </li>
+                {% endfor%}
+            </ol>
         </div>
     </div>
 </div>

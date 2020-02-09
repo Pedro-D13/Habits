@@ -24,11 +24,14 @@ def Home(request):
     #                                                         })
 
 
-# class GoalListView(LoginRequiredMixin, ListView):
-#     queryset = Goal.objects.filter()
-#     template_name = "habits/goal_list.html"
-#     context_object_name = "iamcontext"
-#     allow_empty = True
+class GoalListView(LoginRequiredMixin, ListView):
+    queryset = Goal.objects.filter()
+    template_name = "habits/goal_list.html"
+    context_object_name = "goals"
+
+    def get_queryset(self):
+        qset = Goal.objects.filter(profile__id=self.request.user.id)
+        return qset
 
 #     def get_context_data(self, **kwargs):
 #         context = super().get_context_data(**kwargs)
