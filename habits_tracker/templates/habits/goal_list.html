@@ -1,4 +1,4 @@
-{% extends 'habits/base.html' %}
+{% extends 'habits/goal_createform.html' %}
 
 {% block sctn1 %}
 <div class="columns">
@@ -6,36 +6,62 @@
         <div class="hero is-primary">
             <div class="hero-body">
                 <div class="container">
-                    <h1 class="title has-text-centered"> Dash Board </h1>
+                    <h1 class="title has-text-centered"> {{user | capfirst }} </h1>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-<div class="container">
-    <h1 class="title">
-        {{user}} Goals
-    </h1>
-    <h2 class="subtitle">
-        track the goals you've set
-    </h2>
-    <div class="columns">
-        <div class="column">
-            <ol class="1">
-                {% for goal in goals %}
-                <li> {{goal.goal_title}} </li>
-                {% endfor %}
-            </ol>
+<div class="Hero is-fluid">
+    <article class="panel is-link">
+        <p class="panel-heading has-text-centered">
+        </p>
+        <p class="panel-tabs">
+            <a class="is-active">All</a>
+            <a>To Do Today</a>
+            <a>This Week</a>
+            <a>This Month</a>
+        </p>
+        <div class="panel-block">
+            <p class="control has-icons-left">
+                <input class="input is-link" type="text" placeholder="Search">
+                <span class="icon is-left">
+                    <i class="fas fa-search" aria-hidden="true"></i>
+                </span>
+            </p>
         </div>
-        <div class="column">
-            <ol class="1">
-                {% for goal in goals %}
-                <li> {{goal.goal_status}} </li>
-                {% empty %}
-                <li> ----- </li>
-                {% endfor%}
-            </ol>
+    </article>
+    <div class="hero-body">
+        <!-- Habits Column -->
+        <div class="columns">
+            <div class="column is-one-third">
+                <div class="title"> Habits</div>
+                <ol class="1 box">
+                    {% for goal in goals %}
+                    <li> {{goal.goal_title}} </li>
+                    {% endfor %}
+                </ol>
+            </div>
+            <!-- Habits Column -->
+            <div class="column is-one-third">
+                <div class="title"> Dailies</div>
+                <ol class="1 box">
+                    {% for goal in goals %}
+                    <li> {{goal.goal_status}} </li>
+                    {% empty %}
+                    <li> ----- </li>
+                    {% endfor%}
+                </ol>
+            </div>
+            <!-- Habits Column -->
+            <div class="column is-one-third">
+                <div class="title"> To-Dos</div>
+                <ol class="1 box">
+                    {% for goal in goals%}
+                    <li> ----- </li>
+                    {% endfor %}
+                </ol>
+            </div>
         </div>
     </div>
 </div>

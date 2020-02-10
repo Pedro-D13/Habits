@@ -1,8 +1,23 @@
 {% extends "habits/base.html" %}
 
-{% block content %}
-<div class="container" method="POST">
-    {{form}}
-    <button class="button is-link" type="submit">Submit</button>
+{% block forms %}
+<div class="container is-centered">
+    <form action="POST">
+        <div class="field">
+            <label for="id_goal_title">Goal title:</label>
+            <div class="control">
+                <input type="text" name="goal_title" maxlength="25" required id="id_goal_title">
+            </div>
+            <label for="id_mantra">Mantra:</label>
+            <div class="control">
+                <textarea class="textarea" placeholder="A word or sound repeated to aid concentration in meditation."
+                    name="mantra" cols="" rows="" required id="id_mantra">
+                </textarea>
+            </div>
+            <div class="control">
+                <button class="button is-link" type="submit">Submit</button>
+            </div>
+        </div>
+    </form>
 </div>
-{% endblock content %}
+{% endblock forms %}

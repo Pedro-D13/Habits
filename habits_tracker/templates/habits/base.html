@@ -23,7 +23,7 @@
     <div class="navbar-brand">
         <a class="navbar-item" href="{% url 'homepage' %}">
             <!-- <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28"> -->
-            <h1> 📋 Habby ⏳ </h1>
+            <h1 class="title"> 📋 Habby ⏳ </h1>
         </a>
         <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
             data-target="navbarBasicExample">
@@ -38,17 +38,22 @@
             <a href="{% url 'homepage' %}" class="navbar-item">
                 Home
             </a>
+            <a href="{% url 'homepage' %}" class="navbar-item">
+                Habit tracker
+            </a>
+            <a href="{%  url 'homepage' %}" class="navbar-item">
+                To Do List
+            </a>
             <div class="navbar-item has-dropdown is-hoverable">
                 <a class="navbar-link">
                     More
                 </a>
-
                 <div class="navbar-dropdown">
                     <a class="navbar-item">
-                        About
+                        Motivation
                     </a>
                     <a class="navbar-item">
-                        Jobs
+                        Pomodoro Technique & Timer
                     </a>
 
                     <hr class="navbar-divider">
@@ -58,7 +63,7 @@
                 </div>
             </div>
         </div>
-        {% if user.is_authenticated %}.<div class="navbar-end">
+        {% if user.is_authenticated %}<div class="navbar-end">
             <div class="navbar-item">
                 <div class="buttons">
                     <a href="{% url 'profile' %}" class="button is-outlined">
@@ -114,6 +119,8 @@
     {% block sctn1 %}
     {%endblock sctn1%}
     <!-- End Sctn1 block -->
+    {% block forms%}
+    {% endblock forms %}
 
     <!-- Footer -->
     <footer class="footer">

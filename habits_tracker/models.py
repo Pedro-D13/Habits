@@ -28,8 +28,9 @@ class Goal(models.Model):
 
     def __str__(self):
         return f"{self.goal_title} {self.goal_status}"
-    # #     def get_absolute_url(self):
-    # #         return reverse("model_detail", kwargs={"pk": self.pk})
+
+    def get_absolute_url(self):
+        return reverse("goal-detail", kwargs={"pk": self.pk})
 
 
 class Habit(models.Model):
