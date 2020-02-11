@@ -1,0 +1,11 @@
+{% extends 'habits/base.html' %}
+
+{% block content %}
+
+<div class="container">
+    <div class="container">
+        <h1> update this goal </h1>
+    </div>
+    <a class="button" href="{% url 'habits:goal_update' goal.id %}"> Update Goal</a>
+</div>
+{% endblock%}

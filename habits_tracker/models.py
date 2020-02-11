@@ -1,6 +1,7 @@
 
 import datetime as dt
 from django.db import models
+from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth.models import User
 # from django.db.models import Case, Value, When
@@ -26,11 +27,14 @@ class Goal(models.Model):
         max_length=11)
     mantra = models.TextField()
 
+    class Meta:
+        ordering = ["id"]
+
     def __str__(self):
         return f"{self.goal_title} {self.goal_status}"
 
     def get_absolute_url(self):
-        return reverse("goal-detail", kwargs={"pk": self.pk})
+        return reverse("goal_detail", kwargs={"pk": self.pk})
 
 
 class Habit(models.Model):

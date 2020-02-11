@@ -1,66 +1,100 @@
-{% extends 'habits/goal_createform.html' %}
+{% extends 'habits/base.html' %}
 
 {% block sctn1 %}
+
 <div class="columns">
     <div class="column">
         <div class="hero is-primary">
             <div class="hero-body">
                 <div class="container">
-                    <h1 class="title has-text-centered"> {{user | capfirst }} </h1>
+                    <h1 class="title has-text-centered"> {{user | capfirst }}'s<br>Dashboard </h1>
+
                 </div>
             </div>
         </div>
     </div>
 </div>
-<div class="Hero is-fluid">
-    <article class="panel is-link">
-        <p class="panel-heading has-text-centered">
-        </p>
-        <p class="panel-tabs">
-            <a class="is-active">All</a>
-            <a>To Do Today</a>
-            <a>This Week</a>
-            <a>This Month</a>
-        </p>
-        <div class="panel-block">
-            <p class="control has-icons-left">
-                <input class="input is-link" type="text" placeholder="Search">
-                <span class="icon is-left">
-                    <i class="fas fa-search" aria-hidden="true"></i>
-                </span>
+<div class="container">
+    <div class="Hero is-fluid">
+        <article class="panel is-link">
+            <p class="panel-heading has-text-centered">
             </p>
-        </div>
-    </article>
-    <div class="hero-body">
-        <!-- Habits Column -->
-        <div class="columns">
-            <div class="column is-one-third">
-                <div class="title"> Habits</div>
-                <ol class="1 box">
-                    {% for goal in goals %}
-                    <li> {{goal.goal_title}} </li>
-                    {% endfor %}
-                </ol>
+            <p class="panel-tabs">
+                <a class="is-active">All</a>
+                <a>To Do Today</a>
+                <a>This Week</a>
+                <a>This Month</a>
+            </p>
+            <div class="panel-block">
+                <p class="control has-icons-left">
+                    <input class="input is-link" type="text" placeholder="Search">
+                    <span class="icon is-left">
+                        <i class="fas fa-search" aria-hidden="true"></i>
+                    </span>
+                </p>
             </div>
+        </article>
+        <div class="hero-body">
             <!-- Habits Column -->
-            <div class="column is-one-third">
-                <div class="title"> Dailies</div>
-                <ol class="1 box">
-                    {% for goal in goals %}
-                    <li> {{goal.goal_status}} </li>
-                    {% empty %}
-                    <li> ----- </li>
-                    {% endfor%}
-                </ol>
-            </div>
-            <!-- Habits Column -->
-            <div class="column is-one-third">
-                <div class="title"> To-Dos</div>
-                <ol class="1 box">
-                    {% for goal in goals%}
-                    <li> ----- </li>
-                    {% endfor %}
-                </ol>
+            <div class="columns">
+                <div class="column is-one-third">
+                    <div class="title"> Habits</div>
+                    <div class="content box">
+                        {% for goal in goals %}
+                        <div class="notification is-primary">
+                            <form class="" action="/goal/{{goal.id}}/delete" method="POST">
+                                {% csrf_token %}
+                                <button class="delete" type="submit" value=""></button>
+                            </form>
+                            <div class="control">
+                                <strong> {{goal.goal_title}}:{{goal.mantra}}</strong>
+                            </div>
+                            <form action="/goal/{{goal.id}}/update" class="" method="post">
+                                {% csrf_token %}
+                                <input class="input" type="text" name="goal_title" required
+                                    placeholder="{{goal.goal_title}}">
+                                <input class="input" type="text" name="mantra" required placeholder="{{goal.mantra}}">
+                                <button class="button" type="submit" value="">update</button>
+                            </form>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <form class="box" action="/goal/add/" method="POST">
+                        <h1 class="title is-3"> Add a Habit </h1>
+                        {% csrf_token %}
+                        <label for="id_goal_title">Goal title:</label>
+                        <input class="input is-rounded" type="text" name="goal_title" maxlength="25" required
+                            id="id_goal_title">
+                        <label for="id_mantra">Mantra:</label>
+                        <textarea class="textarea is-info"
+                            placeholder="A word or sound repeated to aid concentration in meditation." name="mantra"
+                            required id="id_mantra">
+                             </textarea>
+                        <button class="button is-link" value="update" type="submit">Submit</button>
+                    </form>
+                </div>
+                <!-- Habits Column -->
+                <div class="column is-one-third">
+                    <div class="title"> Status </div>
+                    <div class="content box">
+                        <ol class="1 ">
+                            {% for goal in goals %}
+                            <li> <a href="{% url 'habits:goal_detail' goal.pk %}"> {{goal.goal_status}} </a> </li>
+                            {% empty %}
+                            <li> ----- </li>
+                            {% endfor%}
+                        </ol>
+                    </div>
+                </div>
+                <!-- Habits Column -->
+                <div class="column is-one-third">
+                    <div class="title"> To-Dos</div>
+                    <ol class="1 box">
+                        {% for goal in goals%}
+                        <li> ----- </li>
+                        {% endfor %}
+                    </ol>
+                </div>
             </div>
         </div>
     </div>

@@ -1,0 +1,25 @@
+{% extends "habits/base.html" %}
+
+{% block forms %}
+<div class="container is-centered">
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <div class="control">
+            <button class="button is-link" value="update" type="submit">Submit</button>
+        </div>
+    </form>
+</div>
+{% endblock forms %}
+
+
+<!-- <label for="id_goal_title">Goal title:</label>
+<div class="control">
+    <input type="text" name="goal_title" maxlength="25" required id="id_goal_title">
+</div>
+<label for="id_mantra">Mantra:</label>
+<div class="control">
+    <textarea class="textarea" placeholder="A word or sound repeated to aid concentration in meditation." name="mantra"
+        cols="" rows="" required id="id_mantra">
+                </textarea>
+</div> -->

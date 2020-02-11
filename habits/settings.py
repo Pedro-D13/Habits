@@ -148,6 +148,9 @@ LOGIN_REDIRECT_URL = 'habits:homepage'
 BULMA_SETTINGS = {
     "extensions": [
     ],
+    "variables": {
+
+    }
 }
 
 
