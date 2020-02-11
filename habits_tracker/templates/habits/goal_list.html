@@ -66,9 +66,9 @@
                                 </div>
                             </form>
                             <span class="icon has-text-info">
-                                <i onclick="toggle()" class="far fa-edit"></i>
+                                <i onclick="toggle({{goal.id}})" class="far fa-edit"></i>
                             </span>
-                            <form action="/goal/{{goal.id}}/update" class="is-hidden" id="updateform" method="post">
+                            <form action="/goal/{{goal.id}}/update" class="is-hidden" id="{{goal.id}}" method="post">
                                 {% csrf_token %}
                                 <div class="field">
                                     <div class="control">

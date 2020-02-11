@@ -1,11 +1,11 @@
 let status = "off";
-
-function toggle() {
+function toggle(arg) {
     if (status == "off") {
-        document.getElementById('updateform').classList.remove('is-hidden');
+        document.getElementById(arg).classList.remove('is-hidden');
         return status = "on";
     } else {
-        document.getElementById('updateform').classList.add('is-hidden');
+        document.getElementById(arg).classList.add('is-hidden');
         return status = "off";
     };
 };
+
