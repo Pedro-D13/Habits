@@ -1,7 +1,6 @@
 {% extends 'habits/base.html' %}
 
 {% block sctn1 %}
-
 <div class="columns">
     <div class="column">
         <div class="hero is-primary">
@@ -16,88 +15,104 @@
 </div>
 <div class="container">
     <div class="Hero is-fluid">
-        <article class="panel is-link">
-            <p class="panel-heading has-text-centered">
+        <p class="panel-heading has-text-centered">
+        </p>
+        <p class="panel-tabs">
+            <a class="is-active">All</a>
+            <a>To Do Today</a>
+            <a>This Week</a>
+            <a>This Month</a>
+        </p>
+        <div class="panel-block">
+            <p class="control has-icons-left">
+                <input class="input is-link" type="text" placeholder="Search">
+                <span class="icon is-left">
+                    <i class="fas fa-search" aria-hidden="true"></i>
+                </span>
             </p>
-            <p class="panel-tabs">
-                <a class="is-active">All</a>
-                <a>To Do Today</a>
-                <a>This Week</a>
-                <a>This Month</a>
-            </p>
-            <div class="panel-block">
-                <p class="control has-icons-left">
-                    <input class="input is-link" type="text" placeholder="Search">
-                    <span class="icon is-left">
-                        <i class="fas fa-search" aria-hidden="true"></i>
-                    </span>
-                </p>
-            </div>
-        </article>
+        </div>
         <div class="hero-body">
             <!-- Habits Column -->
             <div class="columns">
-                <div class="column is-one-third">
-                    <div class="title"> Habits</div>
-                    <div class="content box">
-                        {% for goal in goals %}
-                        <div class="notification is-primary">
-                            <form class="" action="/goal/{{goal.id}}/delete" method="POST">
-                                {% csrf_token %}
-                                <button class="delete" type="submit" value=""></button>
-                            </form>
-                            <div class="control">
-                                <strong> {{goal.goal_title}}:{{goal.mantra}}</strong>
+                <div class="column is-two-third">
+                    <div class="box">
+                        <h3 class="title is-5 has-text-centered"> Add a Habit </h3>
+                        <form class="level" action="/goal/add/" method="POST">
+                            {% csrf_token %}
+                            <div class="level-left">
+                                <label for="id_goal_title">Goal title:</label>
+                                <input class="input is-rounded" type="text" name="goal_title" maxlength="25" required
+                                    id="id_goal_title">
                             </div>
-                            <form action="/goal/{{goal.id}}/update" class="" method="post">
+                            <div class="level-right">
+                                <label for="id_mantra">Description:</label>
+                                <textarea class="input is-info is-rounded"
+                                    placeholder="A word or sound repeated to aid concentration in meditation."
+                                    name="mantra" required id="id_mantra">
+                                </textarea>
+                            </div>
+                            <button class="button is-link" value="update" type="submit">Submit</button>
+                        </form>
+                    </div>
+                    <div class="content box">
+                        <h1 class="title is-4"> Habit List </h1>
+                        {% for goal in goals %}
+                        <div class="notification is-light">
+                            <form class="level" action="/goal/{{goal.id}}/delete" method="POST">
                                 {% csrf_token %}
-                                <input class="input" type="text" name="goal_title" required
-                                    placeholder="{{goal.goal_title}}">
-                                <input class="input" type="text" name="mantra" required placeholder="{{goal.mantra}}">
-                                <button class="button" type="submit" value="">update</button>
+                                {{goal.goal_title}}:{{goal.mantra}}
+                                <div class="level-right">
+                                    <button class="level-item delete is-danger" type="submit" value=""></button>
+                                </div>
+                            </form>
+                            <span class="icon has-text-info">
+                                <i onclick="toggle()" class="far fa-edit"></i>
+                            </span>
+                            <form action="/goal/{{goal.id}}/update" class="is-hidden" id="updateform" method="post">
+                                {% csrf_token %}
+                                <div class="field">
+                                    <div class="control">
+                                        <input class="input" type="text" name="goal_title" required
+                                            placeholder="edit: {{goal.goal_title | truncatechars:15 }}">
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <div class="control">
+                                        <input class="input" type="text" required
+                                            placeholder="edit: {{goal.mantra | truncatechars:15 }}">
+                                    </div>
+                                </div>
+                                <button class="button is-info" type="submit" value="Update">Update</button>
                             </form>
                         </div>
                         {% endfor %}
                     </div>
-                    <form class="box" action="/goal/add/" method="POST">
-                        <h1 class="title is-3"> Add a Habit </h1>
-                        {% csrf_token %}
-                        <label for="id_goal_title">Goal title:</label>
-                        <input class="input is-rounded" type="text" name="goal_title" maxlength="25" required
-                            id="id_goal_title">
-                        <label for="id_mantra">Mantra:</label>
-                        <textarea class="textarea is-info"
-                            placeholder="A word or sound repeated to aid concentration in meditation." name="mantra"
-                            required id="id_mantra">
-                             </textarea>
-                        <button class="button is-link" value="update" type="submit">Submit</button>
-                    </form>
                 </div>
-                <!-- Habits Column -->
+                <!-- TO Do List -->
                 <div class="column is-one-third">
-                    <div class="title"> Status </div>
-                    <div class="content box">
-                        <ol class="1 ">
-                            {% for goal in goals %}
-                            <li> <a href="{% url 'habits:goal_detail' goal.pk %}"> {{goal.goal_status}} </a> </li>
-                            {% empty %}
-                            <li> ----- </li>
-                            {% endfor%}
-                        </ol>
+                    <div class="box">
+                        <h3 class="title is-5 has-text-centered"> Add to List </h3>
+                        <form class="level" action="/goal/add/" method="POST">
+                            {% csrf_token %}
+                            <div class="level-left">
+                                <label for="id_goal_title">To Do List:</label>
+                                <input class="input is-rounded" type="text" name="goal_title" maxlength="25" required
+                                    id="id_goal_title">
+                            </div>
+                            <button class="button is-link" value="update" type="submit">Submit</button>
+                        </form>
                     </div>
-                </div>
-                <!-- Habits Column -->
-                <div class="column is-one-third">
-                    <div class="title"> To-Dos</div>
-                    <ol class="1 box">
-                        {% for goal in goals%}
+                    <div class="content box">
+                        <h1 class="title is-4"> To-Dos </h1>
+                        {% for goal in goals %}
                         <li> ----- </li>
                         {% endfor %}
-                    </ol>
+                    </div>
+                    <!-- END To Do List -->
                 </div>
             </div>
         </div>
     </div>
 </div>
-</section>
-{%endblock sctn1%}
+
+{% endblock sctn1%}

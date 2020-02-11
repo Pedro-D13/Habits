@@ -4,7 +4,6 @@
 // starting value , Avg life expectancy in days, days required to build a habit
 // 100  / 29220 * 66
 function ageInput() {
-    const initial = 100;
     const ageInDays = 29220;
     let ageInput = prompt("Please Enter your age");
 
