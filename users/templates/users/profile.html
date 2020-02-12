@@ -29,7 +29,7 @@
             <!-- Habits Column -->
             <div class="columns">
                 <div class="column is-one-third">
-                    <div class="title"> Habits</div>
+                    <div class="title"><a href="{% url 'habits:goal_list'%}"> Habits </a></div>
                     <ol class="1 box">
                         {% for goal in user.profile.goal_set.all %}
                         <li> <a href="{% url 'habits:goal_update' goal.id %}"> {{goal.goal_title}} </a> </li>
@@ -49,7 +49,7 @@
                 </div>
                 <!-- Habits Column -->
                 <div class="column is-one-third">
-                    <div class="title"> To-Dos</div>
+                    <div class="title"><a href=""> To-Dos </a></div>
                     <ol class="1 box">
                         {% for goal in user.profile.goal_set.all %}
                         <li> ----- </li>

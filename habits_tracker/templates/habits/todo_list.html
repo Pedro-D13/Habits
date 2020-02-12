@@ -1,0 +1,22 @@
+<!-- TO Do List -->
+<div class="column is-one-third">
+    <div class="box">
+        <h3 class="title is-5 has-text-centered"> Add to List </h3>
+        <form class="level" action="/goal/add/" method="POST">
+            {% csrf_token %}
+            <div class="level-left">
+                <label for="id_goal_title">To Do List:</label>
+                <input class="input is-rounded" type="text" name="goal_title" maxlength="25" required
+                    id="id_goal_title">
+            </div>
+            <button class="button is-link" value="update" type="submit">Submit</button>
+        </form>
+    </div>
+    <div class="content box">
+        <h1 class="title is-4"> To-Dos </h1>
+        {% for goal in goals %}
+        <li> ----- </li>
+        {% endfor %}
+    </div>
+    <!-- END To Do List -->
+</div>
