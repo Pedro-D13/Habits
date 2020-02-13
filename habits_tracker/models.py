@@ -56,11 +56,4 @@ class Habit(models.Model):
     #     practised_today = models.DateField()
 
 
-# class JournalEntry(models.Model):
-#     habit = models.ForeignKey(
-#         Habit, on_delete=models.CASCADE, primary_key=True)
-#     tracked_date = models.DateField(unique=True)
-#     notes = models.TextField()
 
-#     def __str__(self):
-#         return f"{self.tracked_date}, {self.habit}"

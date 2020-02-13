@@ -35,57 +35,42 @@
             <!-- Habits Column -->
             <div class="columns">
                 <div class="column">
-                    <div class="box">
-                        <h3 class="title is-5 has-text-centered"> Add a goal </h3>
-                        <form class="level" action="/goal/add/" method="POST">
-                            {% csrf_token %}
-                            <div class="level-left">
-                                <label for="id_goal_title">Goal title:</label>
-                                <input class="input is-rounded" type="text" name="goal_title" maxlength="25" required
-                                    id="id_goal_title">
-                            </div>
-                            <div class="level-right">
-                                <label for="id_mantra">Description:</label>
-                                <textarea class="input is-info is-rounded"
-                                    placeholder="A word or sound repeated to aid concentration in meditation."
-                                    name="mantra" required id="id_mantra">
-                                </textarea>
-                            </div>
-                            <button class="button is-link" value="update" type="submit">Submit</button>
-                        </form>
-                    </div>
-                    <div class="field is-horizontal">
-                        <div class="field-label is-normal">
-                            <label class="label" id="id_goal_title">Create a Goal</label>
-                        </div>
-                        <div class="field-body">
-                            <div class="field">
-                                <p class="control is-expanded has-icons-left">
-                                    <input class="input" type="text" placeholder="Goal">
-                                    <span class="icon is-small is-left">
-                                        <i class="fas fa-user"></i>
-                                    </span>
-                                </p>
-                            </div>
+                    <form class="level" action="/goal/add/" method="POST">
+                        {% csrf_token %}
+                        <div class="field is-horizontal">
                             <div class="field-label is-normal">
-                                <label class="label" for="id_mantra">Mantra</label>
+                                <label class="label" id="id_goal_title">Create a Goal</label>
                             </div>
-                            <div class="field">
-                                <div class="field has-addons">
-                                    <div class="control">
-                                        <p class="control is-expanded">
-                                            <input class="input" type="text" placeholder="Mantra" value="" name="mantra"
-                                                required id="id_mantra">
-                                    </div>
-                                    <div class="control">
-                                        <a class="button is-info">
-                                            Submit
-                                        </a>
+                            <div class="field-body">
+                                <div class="field">
+                                    <p class="control is-expanded has-icons-left">
+                                        <input class="input" type="text" placeholder="Goal" name="goal_title"
+                                            maxlength="25" required id="id_goal_title">
+                                        <span class="icon is-small is-left">
+                                            <i class="fas fa-user"></i>
+                                        </span>
+                                    </p>
+                                </div>
+                                <div class="field-label is-normal">
+                                    <label class="label" for="id_mantra">Mantra</label>
+                                </div>
+                                <div class="field">
+                                    <div class="field has-addons">
+                                        <div class="control">
+                                            <p class="control is-expanded">
+                                                <input class="input" type="text" placeholder="Mantra" value=""
+                                                    name="mantra" required id="id_mantra">
+                                        </div>
+                                        <div class="control">
+                                            <button class="button is-info" value="Create" type="submit">
+                                                Submit
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </form>
                     <div class="content box">
                         <h1 class="title is-4"> Habit List </h1>
                         {% for goal in goals %}
@@ -120,7 +105,8 @@
                         {% empty %}
                         <div class="container has-text-centered">
                             <div class="notification">
-                                <h2 class="has-text-grey">First step is to think about a Habit you want to start<br>now
+                                <h2 class="has-text-grey">First step is to think about a Habit you want to
+                                    start<br>now
                                     create one above</h2>
                             </div>
                         </div>
