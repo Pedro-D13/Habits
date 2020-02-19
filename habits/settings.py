@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'users.apps.UsersConfig',
     'habits_tracker.apps.HabitsTrackerConfig',
+    'todolist.apps.TodolistConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -154,5 +155,5 @@ BULMA_SETTINGS = {
 }
 
 
-LOGIN_REDIRECT_URL = 'homepage'
+LOGIN_REDIRECT_URL = 'habits:homepage'
 LOGIN_URL = 'login'

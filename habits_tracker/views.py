@@ -20,12 +20,9 @@ class GoalListView(LoginRequiredMixin, ListView):
     context_object_name = "goals"
     success_url = 'habits/goal_list.html'
 
-    def post(self, request, *args, **kwargs):
-        request.POST['goal_title']
-
-    # def get_queryset(self):
-    #     qset = Goal.objects.filter(profile__id=self.request.user.id)
-    #     return qset
+    def get_queryset(self):
+        qset = Goal.objects.filter(profile__id=self.request.user.id)
+        return qset
 
 
 class GoalCreateView(LoginRequiredMixin, CreateView):

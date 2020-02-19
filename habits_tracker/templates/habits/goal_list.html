@@ -6,7 +6,8 @@
         <div class="hero is-primary">
             <div class="hero-body">
                 <div class="container">
-                    <h1 class="title has-text-centered"> {{user | capfirst }}'s<br> What will you achieve next</h1>
+                    <h1 class="title has-text-centered"> {{user | capfirst }}'s Goal List<br> What will you achieve next
+                    </h1>
 
                 </div>
             </div>
@@ -36,17 +37,18 @@
             <div class="columns">
                 <div class="column">
                     <div class="content box">
-                        <h1 class="title is-4"> Goals </h1>
+                        <h1 class="title is-4"> Goals: {{user.profile.goal_set.count}}</h1>
+                        <h1 class="title is-4"> Completed goals</h1>
                         {% for goal in goals %}
                         <div class="notification is-light">
-                            <form class="level " action="/goal/{{goal.id}}/delete" method="POST">
+                            <form class="container" action="/goal/{{goal.id}}/delete" method="POST">
                                 {% csrf_token %}
                                 <div class="notification is-success has-icons-left">
                                     <a class="icon is-left has-text-info" style="text-decoration: none;"
                                         onclick="toggle( {{goal.id}} )">
                                         <i class="far fa-edit"></i>
                                     </a>
-                                    {{goal.goal_title}} : {{goal.mantra}}
+                                    {{goal.goal_title | capfirst}} : {{goal.mantra |capfirst}}
                                     <button class="delete is-danger" type="submit" value=""></button>
                                 </div>
                             </form>
@@ -72,7 +74,7 @@
                             <div class="notification">
                                 <h2 class="has-text-grey">First step is to think about a Habit you want to
                                     start<br>now
-                                    create one above
+                                    create one below
                                 </h2>
                             </div>
                         </div>
