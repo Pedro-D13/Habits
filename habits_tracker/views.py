@@ -15,7 +15,6 @@ def Home(request):
 
 
 class GoalListView(LoginRequiredMixin, ListView):
-    queryset = Goal.objects.filter()
     template_name = "habits/goal_list.html"
     context_object_name = "goals"
     success_url = 'habits/goal_list.html'

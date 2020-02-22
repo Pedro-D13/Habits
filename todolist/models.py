@@ -3,32 +3,42 @@ from datetime import datetime, timedelta
 from users.models import Profile
 
 
-# Create your models here.
-
-
-class TDLheading(models.Model):
-    header = models.CharField(max_length=25)
-
-    def __str__(self):
-        return self.header
-
-
 def Tomorrow():
     tmoz = datetime.today() + timedelta(days=1)
     return tmoz.replace(hour=18, minute=0, second=0, microsecond=0)
 
 
-class TDL(models.Model):
-    heading = models.OneToOneField(TDLheading, models.CASCADE)
-    profile = models.ForeignKey(Profile, models.CASCADE)
-    title = models.CharField(max_length=25)
-    duedate = models.DateTimeField(default=Tomorrow())
+class TDLhead(models.Model):
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    header = models.CharField(max_length=25)
+    completed = models.BooleanField(default=False)
 
     def __str__(self):
-        return f"{self.title}\n Due @ {self.duedate}"
+        return self.header
 
 
-class TodoListitem(models.Model):
-    node = models.ForeignKey(TDL, on_delete=models.CASCADE)
+class TDLitem(models.Model):
+    tdlhead = models.ForeignKey(TDLhead, on_delete=models.CASCADE)
+    title = models.CharField(max_length=50)
+    duedate = models.DateTimeField(default=Tomorrow())
     status = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.title
+
+
+class TDLsubtitle(models.Model):
+    item = models.ForeignKey(TDLitem, on_delete=models.CASCADE)
+    subtitle = models.CharField(max_length=100)
+    sub_status = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.subtitle
+
+
+class TDLnotes(models.Model):
+    item = models.ForeignKey(TDLitem, on_delete=models.CASCADE)
     notes = models.TextField()
+
+    def __str__(self):
+        return self.notes
