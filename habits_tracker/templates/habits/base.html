@@ -11,7 +11,6 @@
         Home
         {% endblock %}
     </title>
-    <script src="{% static 'habits/js/ageindays.js' %}" defer></script>
     {% load django_simple_bulma %}
     {% bulma %}
     {% font_awesome %}
@@ -44,18 +43,17 @@
             <a href="{%  url 'tdl:tdl_list' %}" class="navbar-item">
                 To Do List
             </a>
-            <div class="navbar-item has-dropdown is-hoverable">
-                <a class="navbar-link">
+            <div class="navbar-item has-dropdown">
+                <a class="navbar-link" onclick="navdropdown()">
                     More
                 </a>
-                <div class="navbar-dropdown">
+                <div class="navbar-dropdown is-hidden" id='navdropdown'>
                     <a class="navbar-item">
                         Motivation
                     </a>
                     <a class="navbar-item">
                         Pomodoro Technique & Timer
                     </a>
-
                     <hr class="navbar-divider">
                     <a class="navbar-item">
                         Report an issue
@@ -136,8 +134,12 @@
         </div>
     </footer>
     <!-- End Footer -->
+
+    <script src="{% static 'habits/js/ageindays.js' %}" defer></script>
     <script src="{% static 'habits/js/navbar.js' %}" defer></script>
     <script src="{% static 'habits/js/onClickUpdate.js' %}" defer></script>
+    <script src="{% static 'habits/js/listselect.js' %}" defer></script>
+    <script src="{% static 'habits/js/notification_delete.js' %}" defer></script>
 </body>
 
 </html>

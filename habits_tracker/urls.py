@@ -3,7 +3,6 @@ from habits_tracker import views
 from .views import (GoalCreateView, GoalListView,
                     GoalUpdateView, GoalDeleteView,
                     GoalDetailView)
-from todolist.views import TDL_List
 
 
 app_name = "habits"
@@ -14,5 +13,4 @@ urlpatterns = [
     path('goal/<int:pk>/update', GoalUpdateView.as_view(), name='goal_update'),
     path('goal/<int:pk>/', GoalDetailView.as_view(), name='goal_detail'),
     path('goal/<int:pk>/delete', GoalDeleteView.as_view(), name='goal_delete'),
-    path('goal/tdl', TDL_List.as_view(), name="tdl"),
 ]

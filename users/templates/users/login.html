@@ -9,14 +9,14 @@
                 <label for="id_username" class="label">Username</label>
                 <div class="control">
                     <input type="text" name="username" autofocus autocapitalize="none" autocomplete="username"
-                        maxlength="150" required id="id_username" class="input" placeholder="UrAwesome5000😎">
+                        maxlength="150" required id="id_username" class="input" placeholder="UrAwesome😎">
                 </div>
             </div>
             <div class="field">
                 <label class="label">Passsword</label>
                 <div class="control">
                     <input type="password" name="password" autocomplete="current-password" required id="id_password"
-                        class="input" placeholder="🙅‍♀password123🙅‍♀">
+                        class="input" placeholder="🙅‍♀nopassword123🙅‍♀">
                 </div>
             </div>
             <div class="field is-grouped">
@@ -28,6 +28,10 @@
                 </div>
             </div>
         </form>
+        <div class="control">
+            <a class="is-small is-muted is-link is-light" href="{% url 'password_reset' %}"> Forgot
+                Password🤔</a>
+        </div>
     </div>
 </div>
 {% endblock content %}
