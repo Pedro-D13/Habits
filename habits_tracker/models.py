@@ -54,6 +54,3 @@ class Habit(models.Model):
     #     preparations = models.TextField(blank=True)
     #     commited = models.BooleanField(default=False)
     #     practised_today = models.DateField()
-
-
-

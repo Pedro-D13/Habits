@@ -25,7 +25,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
-
 let status = "off";
 function navdropdown() {
     if (status == "off") {

@@ -1,11 +1,17 @@
-let status = "off";
+let edit_status = "off";
 function toggle(arg) {
-    if (status == "off") {
+    if (edit_status == "off") {
         document.getElementById(arg).classList.remove('is-hidden');
-        return status = "on";
+        return edit_status = "on";
     } else {
         document.getElementById(arg).classList.add('is-hidden');
-        return status = "off";
+        return edit_status = "off";
     };
 };
 
+const goalUpdateBtn = document.getElementById('goalupdatebtn');
+
+goalUpdateBtn.addEventListener('click', function () {
+    // you will need to watch the video by dev ed, for handling parent and child nodes etc
+
+});

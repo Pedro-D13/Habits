@@ -1,6 +1,17 @@
 {% extends 'habits/base.html'%}
 
 {%block content %}
+{% if user.is_authenticated %}
+
+<div class="section">
+
+    DashBoard
+
+</div>
+
+{% else %}
+
+
 <!-- Hero Intro -->
 <section class="hero">
     <div class="hero-body">
@@ -77,4 +88,6 @@
     </div>
 </section>
 <!-- End of content -->
+
+{% endif %}
 {% endblock content %}

@@ -1,8 +1,143 @@
 {% extends 'habits/base.html' %}
 
+{% block title %}
+To Do List
+
+{% endblock %}
 
 {% block sctn1 %}
 
+<style></style>
+
+
+<div class="container is-block" style="background-color:#fafafa">
+    <div class="columns">
+        <div class="column is-one-fifth is-hidden-mobile">
+            <article class="panel">
+                <p class="panel-heading" style="background-color:#fafafa;">
+                    Lists
+                </p>
+                <a class=" panel-block is-active">
+                    <span class="panel-icon">
+                        <span class="mdi mdi-calendar"></span>
+                    </span>
+                    Today
+                </a>
+                <a class="panel-block">
+                    <span class="panel-icon">
+                        <span class="mdi mdi-calendar-week"></span>
+                    </span>
+                    This Week
+                </a>
+                <a class="panel-block">
+                    <span class="panel-icon">
+                        <i class="fas fa-tasks"></i>
+                    </span>
+                    Projects
+                </a>
+            </article>
+        </div>
+        <div class="column is-three-fifths" style="background-color: white;">
+            <div class="container">
+                <h2 class="title is-3"> List Title </h2>
+                <br>
+            </div>
+
+            {% for item in tdl %}
+            <div class="content">
+                <ul style="list-style-type:none;">
+                    <li>
+                        <form action="/tdl/{{item.id}}/delete" method="POST" id="deleteform{{item.id}}">
+                            {% csrf_token %}
+                            <a onclick="document.getElementById('deleteform{{item.id}}').classList.toggle('is-hidden')">
+                                {{item}}
+                            </a>
+                            <button type="submit" class="delete is-pulled-right"></button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+            {% endfor %}
+            <button style="justify-content: left;" class="button is-white is-fullwidth" onclick="toggleaddtask()"
+                id="addtaskbutton">
+                <span class="icon is-left">
+                    <i class="fas fa-plus"></i>
+                </span>
+                <span class="">
+                    Add Task
+                </span>
+            </button>
+            <form class="is-hidden" action="/tdl/add/" method="POST" id="addtaskinput">
+                <div class="column">
+                    {% csrf_token %}
+                    <div class="field has-addons ">
+                        <p class="control is-expanded">
+                            <label class="is-hidden" for="id_header"></label>
+                            <input class="input" type="text" placeholder="Task" name="header" maxlength="25" required
+                                id="id_header">
+                        </p>
+                        <p class="control">
+                            <a class="button">
+                                due date
+                            </a>
+                        </p>
+                    </div>
+                    <div class="field is-grouped">
+                        <p class="control">
+                            <button class="button is-success" value="Create" type="submit"> Submit </button>
+                        </p>
+                        <p class=" control">
+                            <button id='cancel' class="button is-danger" onclick="toggleaddtask()">Cancel</button>
+                        </p>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
+
+        <!-- 
+            <div class="field is-horizontal">
+                <div class="field-label is-normal">
+                    <label class="label" for="id_header">Header:</label>
+                </div>
+                <div class="field-body">
+                    <div class="field">
+                        <p class="control is-expanded">
+                            <input class="input" type="text" placeholder="Goal" name="goal_title" maxlength="25"
+                                required id="id_goal_title">
+                        </p>
+                    </div>
+                    <div class="field-label is-normal">
+                        <label class="label" for="id_mantra">Mantra</label>
+                    </div>
+                    <div class="field is-normal has-addons">
+                        <p class="control is-expanded">
+                            <input class="input" type="text" placeholder="Mantra" value="" name="mantra" required
+                                id="id_mantra">
+                        </p>
+                        <div class="control">
+                            <button class="button is-info" value="Create" type="submit">
+                                Submit
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+
+        <!-- <ul>
+                <h1 class="title"> Name of Current list </h1>
+                <div class="control has-icons-left">
+                    <a href=""> Add Task
+                   
+                    </a>
+                </div>
+            </ul> -->
+    </div>
+</div>
+
+{% endblock sctn1 %}
+<!-- 
 <section class="section">
     <div class="container">
         <div class="columns is-multiline">
@@ -66,8 +201,4 @@
             </div>
         </div>
     </div>
-</section>
-
-
-
-{% endblock sctn1 %}
+</section> -->

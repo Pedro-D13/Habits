@@ -1,22 +1,98 @@
 {% extends 'habits/base.html' %}
 
-{% block sctn1 %}
-<div class="columns">
-    <div class="column">
-        <div class="hero is-primary">
-            <div class="hero-body">
-                <div class="container">
-                    <h1 class="title has-text-centered"> {{user | capfirst }}'s Goal List<br> What will you achieve next
-                    </h1>
+{% block title %}
+goal_list
+{% endblock title%}
 
+
+
+
+{% block sctn1 %}
+
+<div class="container">
+    <div class="Hero is-fluid">
+        <div class="hero-body">
+            <!-- Habits Column -->
+            <div class="content box">
+                <small class="is-2"> Goals: {{user.profile.goal_set.count}}</small>
+                <br>
+                <small class="is-2"> Completed goals</small>
+                {% for goal in goals %}
+                <div class="notification is-light">
+                    <form class="container" action="/goal/{{goal.id}}/delete" method="POST">
+                        {% csrf_token %}
+                        <div class="is-success has-icons-left">
+                            <a id="goalupdatebtn" class="icon is-left has-text-info" style="text-decoration: none;"></a>
+                            <i class=" fas fa-pen"></i> </a>
+                            {{goal.goal_title | capfirst}} : {{goal.mantra |capfirst}}
+                            <button class="delete is-danger" type="submit" value=""></button>
+                        </div>
+                    </form>
+                    <form action="/goal/{{goal.id}}/update" class="is-hidden" id="goalupdate{{goal.id}}" method="post">
+                        {% csrf_token %}
+                        <div class="field">
+                            <div class="control">
+                                <input class="input" type="text" name="goal_title" required
+                                    placeholder="edit: {{goal.goal_title | truncatechars:15 }}">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="control">
+                                <input class="input" type="text" required name="mantra"
+                                    placeholder="edit: {{goal.mantra | truncatechars:15 }}">
+                            </div>
+                        </div>
+                        <button class="button is-info" type="submit" value="Update">Update</button>
+                    </form>
                 </div>
+                {% empty %}
+                <div class="container has-text-centered">
+                    <button class="button is-white">
+                        <span class="icon">
+                            <i class="fas fa-plus"></i>
+                        </span>
+                        <span>
+                            Add Goal
+                        </span>
+                    </button>
+                </div>
+                {% endfor %}
+                <form class="level" action="/goal/add/" method="POST">
+                    {% csrf_token %}
+                    <div class="field is-horizontal">
+                        <div class="field-label is-normal">
+                            <label class="label" id="id_goal_title">Create a Goal</label>
+                        </div>
+                        <div class="field-body">
+                            <div class="field">
+                                <p class="control is-expanded">
+                                    <input class="input" type="text" placeholder="Goal" name="goal_title" maxlength="25"
+                                        required id="id_goal_title">
+                                </p>
+                            </div>
+                            <div class="field-label is-normal">
+                                <label class="label" for="id_mantra">Mantra</label>
+                            </div>
+                            <div class="field is-normal has-addons">
+                                <p class="control is-expanded">
+                                    <input class="input" type="text" placeholder="Mantra" value="" name="mantra"
+                                        required id="id_mantra">
+                                </p>
+                                <div class="control">
+                                    <button class="button is-info" value="Create" type="submit">
+                                        Submit
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
 </div>
-<div class="container">
-    <div class="Hero is-fluid">
-        <p class="panel-heading has-text-centered">
+{% endblock sctn1%}
+<!-- <p class="panel-heading has-text-centered">
         </p>
         <p class="panel-tabs">
             <a class="is-active">All</a>
@@ -31,90 +107,4 @@
                     <i class="fas fa-search" aria-hidden="true"></i>
                 </span>
             </p>
-        </div>
-        <div class="hero-body">
-            <!-- Habits Column -->
-            <div class="columns">
-                <div class="column">
-                    <div class="content box">
-                        <h1 class="title is-4"> Goals: {{user.profile.goal_set.count}}</h1>
-                        <h1 class="title is-4"> Completed goals</h1>
-                        {% for goal in goals %}
-                        <div class="notification is-light">
-                            <form class="container" action="/goal/{{goal.id}}/delete" method="POST">
-                                {% csrf_token %}
-                                <div class="notification is-success has-icons-left">
-                                    <a class="icon is-left has-text-info" style="text-decoration: none;"
-                                        onclick="toggle( {{goal.id}} )">
-                                        <i class="far fa-edit"></i>
-                                    </a>
-                                    {{goal.goal_title | capfirst}} : {{goal.mantra |capfirst}}
-                                    <button class="delete is-danger" type="submit" value=""></button>
-                                </div>
-                            </form>
-                            <form action="/goal/{{goal.id}}/update" class="is-hidden" id="{{goal.id}}" method="post">
-                                {% csrf_token %}
-                                <div class="field">
-                                    <div class="control">
-                                        <input class="input" type="text" name="goal_title" required
-                                            placeholder="edit: {{goal.goal_title | truncatechars:15 }}">
-                                    </div>
-                                </div>
-                                <div class="field">
-                                    <div class="control">
-                                        <input class="input" type="text" required name="mantra"
-                                            placeholder="edit: {{goal.mantra | truncatechars:15 }}">
-                                    </div>
-                                </div>
-                                <button class="button is-info" type="submit" value="Update">Update</button>
-                            </form>
-                        </div>
-                        {% empty %}
-                        <div class="container has-text-centered">
-                            <div class="notification">
-                                <h2 class="has-text-grey">First step is to think about a Habit you want to
-                                    start<br>now
-                                    create one below
-                                </h2>
-                            </div>
-                        </div>
-                        {% endfor %}
-                        <form class="level" action="/goal/add/" method="POST">
-                            {% csrf_token %}
-                            <div class="field is-horizontal">
-                                <div class="field-label is-normal">
-                                    <label class="label" id="id_goal_title">Create a Goal</label>
-                                </div>
-                                <div class="field-body">
-                                    <div class="field">
-                                        <p class="control is-expanded">
-                                            <input class="input" type="text" placeholder="Goal" name="goal_title"
-                                                maxlength="25" required id="id_goal_title">
-                                        </p>
-                                    </div>
-
-                                    <div class="field-label is-normal">
-                                        <label class="label" for="id_mantra">Mantra</label>
-                                    </div>
-                                    <div class="field is-normal has-addons">
-                                        <p class="control is-expanded">
-                                            <input class="input" type="text" placeholder="Mantra" value="" name="mantra"
-                                                required id="id_mantra">
-                                        </p>
-                                        <div class="control">
-                                            <button class="button is-info" value="Create" type="submit">
-                                                Submit
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-{% endblock sctn1%}
+        </div> -->

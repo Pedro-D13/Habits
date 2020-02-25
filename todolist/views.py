@@ -6,7 +6,7 @@ from .models import TDLhead, TDLitem, TDLnotes, TDLsubtitle
 # Create your views here.
 
 
-class TDL_List(LoginRequiredMixin, ListView):
+class TDL_ListView(LoginRequiredMixin, ListView):
     model = TDLhead
     template_name = "todolist/tdl.html"
     context_object_name = "tdl"
@@ -18,13 +18,27 @@ class TDL_List(LoginRequiredMixin, ListView):
         return queryset
 
 
-class TDLCreate(LoginRequiredMixin, CreateView):
-    pass
+class TDLCreateView(LoginRequiredMixin, CreateView):
+    model = TDLhead
+    fields = ['header', 'completed']
+    template_name = "todolist/tdl.html"
+    success_url = reverse_lazy('tdl:tdl_list')
+
+    def form_valid(self, form):
+        form.instance.profile = self.request.user.profile
+        return super().form_valid(form)
 
 
-class TDLUpdate(LoginRequiredMixin, UpdateView):
-    pass
+class TDLUpdateView(LoginRequiredMixin, UpdateView):
+    model = TDLhead
+    fields = ['header', 'completed']
+    success_url = reverse_lazy('tdl:tdl_list')
+
+    def form_valid(self, form):
+        form.instance.profile = self.request.user.profile
+        return super().form_valid(form)
 
 
-class TDLDelete(LoginRequiredMixin, DeleteView):
-    pass
+class TDLDeleteView(LoginRequiredMixin, DeleteView):
+    model = TDLhead
+    success_url = reverse_lazy('tdl:tdl_list')
