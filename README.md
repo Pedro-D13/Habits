@@ -27,6 +27,13 @@ Screenshots
 * - [ ] **Dashboard**- An Overview of what tasks are coming up and need attention and once that are overdue. How many Pomodoros you have completed over the week. 
 Credits
 
+## Screenshots
+
+![Image of HomeScreen](https://github.com/Pedro-D13/Habits/blob/master/Habby_HomePage.png)
+![Image of Login Page](https://github.com/Pedro-D13/Habits/blob/master/Habby_Login_page.png)
+
+
+
 ## Credit
 [Django-simple-bulma](https://github.com/python-discord/django-simple-bulma)
 
