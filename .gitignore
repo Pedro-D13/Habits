@@ -12,10 +12,9 @@ to_list.txt
 # VSCODE
 .vscode/
 
-#
-staticfiles/
-*.png
 
+# staticfiles/
+habitica.png
 
 # Distribution / packaging
 .Python
