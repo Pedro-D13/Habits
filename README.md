@@ -20,7 +20,7 @@ Screenshots
 
 * - [x] **ToDoList** - Create Update and Delete Lists the user has created to keep track of different tasks created.
 
-* - [ ] **Habit Tracker** - Helps create habits, by keeping track of the repetitive tasks users have set for themselves. Will ask at the end of each day, have they completed this task. Option to opt in or out of remainders which will be emails sent to the user at their designated times.
+* - [ ] **Habit Tracker** - Helps create habits, by keeping track of the repetitive tasks users have set for themselves. Will ask at the end of each day, have they completed this task. Option to opt in or out of reminders which will be emails sent to the user at their designated times.
 
 * - [ ] **Pomodoro Tracker** - A popular and powerful time management technique that is used to break up a large task into small sprints of intense work. Can keep track of your work sprints and breaks
 
