@@ -1,0 +1,34 @@
+{% extends 'habits/base.html'%}
+
+{% block sctn1 %}
+<div class="container">
+    <div class="box">
+        working {{list_in_focus}}
+        <p>
+            {% for item in items %}
+            <li> {{item}} </li>
+            <form class="button" action="/tdi/{{item.id}}/delete/{{list_in_focus}}/" method="POST">
+                {% csrf_token %}
+                <button type="submit" class="delete is-pulled-right"> delete </button>
+            </form>
+            {% empty %}
+            you have nothing in this to do list
+            {% endfor %}
+        </p>
+    </div>
+    <form action="/tdi/add/" method="POST">
+        {% csrf_token %}
+        <div class="box">
+            <select class="is-hidden" name="tdlist" required id="id_tdlist">
+                <option value="{{list_in_focus}}"></option>
+            </select>
+            <label for="id_content">Content:</label>
+            <input type="text" name="content" maxlength="50" required id="id_content">
+            <label for="id_duedate">Duedate:</label></<label>
+            <input type="text" name="duedate" value="2020-03-08 18:00:00" required id="id_duedate">
+        </div>
+        <button class="button" type="submit"> Submit </button>
+    </form>
+</div>
+
+{% endblock %}

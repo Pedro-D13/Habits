@@ -1,0 +1,45 @@
+{% extends 'habits/base.html' %}
+
+{% block title %}
+Current list:{{list_in_focus}}
+{% endblock title %}
+
+{% block sctn1 %}
+<div class="container">
+    <div class="box">
+        <h2 class="title"> viewing {{list_in_focus}} list </h2>
+        <ul>
+            {% for each in item %}
+            <li class="box">
+                <form class="" action="/tdi/{{each.id}}/delete/" method="POST">
+                    {% csrf_token %}
+                    <button type="submit" value="Confirm" class="delete is-pulled-right"> delete </button>
+                </form>{{each.content}}
+
+            </li>
+            {% empty %}
+            nothing to see here
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="box">
+        <form action="/tdi/add/{{list_in_focus.id}}/" method="POST">
+            {% csrf_token %}
+            <tr>
+                <td><select class="is-hidden" name="tdlist" required id="id_tdlist">
+                        <option value="{{list_in_focus.id}}"></option>
+                    </select></td>
+            </tr>
+            <tr>
+                <th><label for="id_content">Content:</label></th>
+                <td><input type="text" name="content" maxlength="50" required id="id_content"></td>
+            </tr>
+            <tr>
+                <th><label for="id_duedate">Duedate:</label></th>
+                <td><input type="text" name="duedate" value="2020-03-09 18:00:00" required id="id_duedate"></td>
+            </tr>
+            <button class="button" type="submit" value="save"> Submit </button>
+        </form>
+    </div>
+</div>
+{% endblock sctn1 %}

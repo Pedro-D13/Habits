@@ -4,8 +4,15 @@ from django.forms import modelformset_factory
 from todolist.models import *
 
 
-class TDLForm(ModelForm):
+class TDListForm(ModelForm):
 
     class Meta:
-        model = TDLhead
-        fields = ['header', 'completed']
+        model = TDlist
+        fields = ['title', 'completed']
+
+
+class TDItemForm(ModelForm):
+
+    class Meta:
+        model = TDitem
+        fields = ['tdlist', 'content', 'duedate']

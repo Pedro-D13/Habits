@@ -34,6 +34,8 @@
         </a>
     </div>
 
+
+
     <div id="navbarBasicExample" class="navbar-menu">
         <div class="navbar-start">
             <a href="{% url 'habits:homepage' %}" class="navbar-item">
@@ -67,7 +69,8 @@
                 </div>
             </div>
         </div>
-        {% if user.is_authenticated %}<div class="navbar-end">
+        {% if user.is_authenticated %}
+        <div class="navbar-end">
             <div class="navbar-item">
                 <div class="buttons">
                     <a href="{% url 'profile' %}" class="button is-outlined">
@@ -94,6 +97,8 @@
         </div>
         {% endif %}
     </div>
+
+
 </nav>
 {% endblock nav%}
 <!-- End Navigation -->
@@ -116,38 +121,41 @@
 <!-- End Messages/Alerts -->
 
 <body>
-    {% block content %}
-    {% endblock content %}
-    <!-- Sctn1 block  -->
+    <section class="hero is-fullheight" style="background-color: whitesmoke;">
+        {% block content %}
+        {% endblock content %}
+        <!-- Sctn1 block  -->
 
-    {% block sctn1 %}
-    {%endblock sctn1%}
-    <!-- End Sctn1 block -->
-    {%block forms %}
-    {%endblock forms%}
+        {% block sctn1 %}
+        {%endblock sctn1%}
+        <!-- End Sctn1 block -->
+        {%block forms %}
+        {%endblock forms%}
 
+        {% block footer%}
+        <!-- Footer -->
+        <footer class=" footer">
+            <div class="content has-text-centered">
+                <p>
+                    <strong>Habby the habit tracker</strong> by <a href="https://github.com/Pedro-D13/">Pedro Dias</a>.
+                    The source
+                    code is licensed
+                    <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
+                    is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"> {% lorem 5 w random %}</a>.
+                </p>
+            </div>
+        </footer>
+        <!-- End Footer -->
+        {% endblock %}
+        <script src="{% static 'habits/js/ageindays.js' %}" defer></script>
+        <script src="{% static 'habits/js/navbar.js' %}" defer></script>
+        <script src="{% static 'habits/js/onClickUpdate.js' %}" defer></script>
+        <script src="{% static 'habits/js/dropdown.js' %}" defer></script>
+        <script src="{% static 'habits/js/addtask.js' %}" defer></script>
+        <script src="{% static 'habits/js/list_title.js' %}" defer></script>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="content has-text-centered">
-            <p>
-                <strong>Habby the habit tracker</strong> by <a href="https://github.com/Pedro-D13/">Pedro Dias</a>.
-                The source
-                code is licensed
-                <a href="http://opensource.org/licenses/mit-license.php">MIT</a>. The website content
-                is licensed <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/"> {% lorem 5 w random %}</a>.
-            </p>
-        </div>
-    </footer>
-    <!-- End Footer -->
-
-    <script src="{% static 'habits/js/ageindays.js' %}" defer></script>
-    <script src="{% static 'habits/js/navbar.js' %}" defer></script>
-    <script src="{% static 'habits/js/onClickUpdate.js' %}" defer></script>
-    <script src="{% static 'habits/js/listselect.js' %}" defer></script>
-    <script src="{% static 'habits/js/addtask.js' %}" defer></script>
-
-    <!-- <script src="{% static 'habits/js/notification_delete.js' %}" defer></script> -->
+        <!-- <script src="{% static 'habits/js/notification_delete.js' %}" defer></script> -->
+    </section>
 </body>
 
 </html>

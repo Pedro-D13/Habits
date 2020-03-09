@@ -2,83 +2,82 @@
 
 {% block title %}
 To Do List
-
 {% endblock %}
-
 {% block sctn1 %}
-
-<style></style>
-
-
-<div class="container is-block" style="background-color:#fafafa">
+<!-- is-two-fifth-desktop is-hidden-tablet is-hidden-mobile -->
+<section class="hero is-fullheight">
     <div class="columns">
         <div class="column is-one-fifth is-hidden-mobile">
-            <article class="panel">
-                <p class="panel-heading" style="background-color:#fafafa;">
-                    Lists
+            <article class="panel is-pulled-right">
+                <p class="panel-heading" style=" border:none;">
+                    Inbox
                 </p>
-                <a class=" panel-block is-active">
+                <a class="panel-block is-active" style="border: none;">
                     <span class="panel-icon">
                         <span class="mdi mdi-calendar"></span>
                     </span>
                     Today
                 </a>
-                <a class="panel-block">
+                <a class="panel-block" style="border: none;">
                     <span class="panel-icon">
                         <span class="mdi mdi-calendar-week"></span>
                     </span>
                     This Week
                 </a>
-                <a class="panel-block">
+                <a class="panel-block" id="projects-item" style="border: none;">
                     <span class="panel-icon">
                         <i class="fas fa-tasks"></i>
                     </span>
                     Projects
+                    <span class="panel-icon is-small is-pulled-right">
+                        <i class="fas fa-angle-down" aria-hidden="true"></i>
+                    </span>
                 </a>
+                <div class="dropdown has-text-centered" id="dropdown-menu-tdl">
+                    <div class="dropdown-menu" role="menu">
+                        {% for list in lists %}
+                        <div class="dropdown-content">
+                            <a class="link" id="project{{list}}" class="dropdown-item"
+                                href="{% url 'tdl:tdl_detail' list.pk %}">
+                                {{list}}
+                            </a>
+                        </div>
+                        <hr class=" dropdown-divider">
+                        {% empty %}
+                        <div class="dropdown-content">
+                            No Current Projects
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
             </article>
         </div>
-        <div class="column is-three-fifths" style="background-color: white;">
-            <div class="container">
-                <h2 class="title is-3"> List Title </h2>
-                <br>
-            </div>
+        <div class="column is-three-fifths has-background-white"
+            style="border:2px solid #a7a0a0; background-color: white; height:100vh;">
+            <h2 class="title is-3" id="project-title"> Project Title
+                <button class="button is-medium is-white is-pulled-right" id="addtaskbutton">
+                    <span class="icon">
+                        <i class="fas fa-plus"></i>
+                        <span> Add </span>
+                    </span>
+                </button>
+            </h2>
+            <br>
 
-            {% for item in tdl %}
-            <div class="content">
-                <ul style="list-style-type:none;">
-                    <li>
-                        <form action="/tdl/{{item.id}}/delete" method="POST" id="deleteform{{item.id}}">
-                            {% csrf_token %}
-                            <a onclick="document.getElementById('deleteform{{item.id}}').classList.toggle('is-hidden')">
-                                {{item}}
-                            </a>
-                            <button type="submit" class="delete is-pulled-right"></button>
-                        </form>
-                    </li>
-                </ul>
-            </div>
-            {% endfor %}
-            <button style="justify-content: left;" class="button is-white is-fullwidth" onclick="toggleaddtask()"
-                id="addtaskbutton">
-                <span class="icon is-left">
-                    <i class="fas fa-plus"></i>
-                </span>
-                <span class="">
-                    Add Task
-                </span>
-            </button>
             <form class="is-hidden" action="/tdl/add/" method="POST" id="addtaskinput">
                 <div class="column">
                     {% csrf_token %}
                     <div class="field has-addons ">
                         <p class="control is-expanded">
-                            <label class="is-hidden" for="id_header"></label>
-                            <input class="input" type="text" placeholder="Task" name="header" maxlength="25" required
-                                id="id_header">
+                            <label class="is-hidden" for="id_title"></label>
+                            <input class="input" type="text" placeholder="Task" name="title" maxlength="25" required
+                                id="id_title">
                         </p>
                         <p class="control">
                             <a class="button">
-                                due date
+                                Due Date:
+                                <input type="date" placeholder="">
+
                             </a>
                         </p>
                     </div>
@@ -87,118 +86,72 @@ To Do List
                             <button class="button is-success" value="Create" type="submit"> Submit </button>
                         </p>
                         <p class=" control">
-                            <button id='cancel' class="button is-danger" onclick="toggleaddtask()">Cancel</button>
+                            <button id='cancel' class="button is-danger">Cancel</button>
                         </p>
                     </div>
                 </div>
             </form>
-        </div>
-
-
-
-        <!-- 
-            <div class="field is-horizontal">
-                <div class="field-label is-normal">
-                    <label class="label" for="id_header">Header:</label>
-                </div>
-                <div class="field-body">
-                    <div class="field">
-                        <p class="control is-expanded">
-                            <input class="input" type="text" placeholder="Goal" name="goal_title" maxlength="25"
-                                required id="id_goal_title">
-                        </p>
+            {% for list in lists %}
+            <article class="media">
+                <div class="media-content">
+                    <div class="content">
+                        <a href="{% url 'tdl:tdl_detail' list.id %}">
+                            {{list}}
+                        </a>
                     </div>
-                    <div class="field-label is-normal">
-                        <label class="label" for="id_mantra">Mantra</label>
-                    </div>
-                    <div class="field is-normal has-addons">
-                        <p class="control is-expanded">
-                            <input class="input" type="text" placeholder="Mantra" value="" name="mantra" required
-                                id="id_mantra">
-                        </p>
-                        <div class="control">
-                            <button class="button is-info" value="Create" type="submit">
-                                Submit
-                            </button>
+                    <nav class="level is-mobile">
+                        <div class="level-left">
+                            <a class="level-item">
+                                <span class="icon is-small"><i class="far fa-edit"></i></span>
+                            </a>
+                            <a class="level-item">
+                                <span class="icon is-small"><i class="fas fa-heart"></i></span>
+                            </a>
                         </div>
-                    </div>
+                    </nav>
                 </div>
-            </div> -->
-
-        <!-- <ul>
-                <h1 class="title"> Name of Current list </h1>
-                <div class="control has-icons-left">
-                    <a href=""> Add Task
-                   
-                    </a>
+                <div class="media-right">
+                    <form action="/tdl/{{list.pk}}/delete/" method="POST">
+                        {% csrf_token %}
+                        <button class="delete" type="submit">
+                        </button>
+                    </form>
                 </div>
-            </ul> -->
+            </article>
+            {% empty %}
+            <h1> No lists created, Click "Add" Above to get started </h1>
+            {% endfor %}
+        </div>
     </div>
-</div>
+
+</section>
+
 
 {% endblock sctn1 %}
+{% block footer  %}
+{% endblock footer %}
+
+
+
+
+<!-- for loop to display the different project -->
 <!-- 
-<section class="section">
-    <div class="container">
-        <div class="columns is-multiline">
-            <div class="column is-narrow">
-                <div class="columns">
-                    <div class="column">
-                        <div class="dropdown">
-                            <div class="dropdown-trigger">
-                                <button class="button" aria-haspopup="true" aria-controls="dropdown-menu3">
-                                    <span>To Do Lists:</span>
-                                    <span class="icon is-small">
-                                        <i class="fas fa-angle-down" aria-hidden="true"></i>
-                                    </span>
-                                </button>
-                            </div>
-                            <div class="dropdown-menu" id="dropdown-menu3" role="menu">
-                                {% for list in tdl %}
-                                {% if list.completed != True %}
-                                <div class="dropdown-content">
-                                    <a class="dropdown-item" onclick="selectList('{{list}}')">
-                                        {{ list | capfirst }}
-                                    </a>
-                                </div>
-                                {%endif%}
-                                {%endfor %}
-                            </div>
-                        </div>
-                    </div>
-                    <div class="column">
-                        <div class="dropdown">
-                            <div class="dropdown-trigger">
-                                <button class="button" aria-haspopup="true" aria-controls="dropdown-menu4">
-                                    <span>Completed:</span>
-                                    <span class="icon is-small">
-                                        <i class="fas fa-angle-down" aria-hidden="true"></i>
-                                    </span>
-                                </button>
-                            </div>
-                            {% for list in tdl %}
-                            {% if list.completed == True%}
-                            <div class="dropdown-menu" id="dropdown-menu4" role="menu">
-                                <div class="dropdown-content">
-                                    <div class="dropdown-item">
-                                        <a href=""> {{list}} </a>
-                                    </div>
-                                </div>
-                            </div>
-                            {% endif %}
-                            {% endfor %}
-                        </div>
-                    </div>
-                </div>
+{% for list in tdl %}
+<div class="content">
+    <ul style="list-style-type:none;">
+        <li style="border-bottom: 2px solid #e9ddddce; padding-top:1rem;">
+            <div class="control is-inline">
+                <a class="checkbox">
+                    <input type="checkbox" name="compeleted">
+                    <span> {{list}} </span>
+                </a>
             </div>
-
-            <div class="column has-text-centered">
-                <div class="has-background-black">
-
-                    <h1 id="editme"> to be changed </h1>
-
-                </div>
-            </div>
-        </div>
-    </div>
-</section> -->
+            <form class="is-inline-block is-pulled-right" action="/tdl/{{list.id}}/delete" method="POST"
+                id="deleteform{{list.id}}">
+                {% csrf_token %}
+                <button onclick="document.getElementById('deleteform{{list.id}}').classList.toggle('is-hidden')"
+                    type="submit" class="delete is-pulled-right"></button>
+            </form>
+        </li>
+    </ul>
+    {% endfor %} -->
