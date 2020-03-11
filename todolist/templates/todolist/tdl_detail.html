@@ -14,32 +14,56 @@ Current list:{{list_in_focus}}
                 <form class="" action="/tdi/{{each.id}}/delete/" method="POST">
                     {% csrf_token %}
                     <button type="submit" value="Confirm" class="delete is-pulled-right"> delete </button>
-                </form>{{each.content}}
-
+                </form>
+                <a class="icon has-text-info"
+                    onclick="document.getElementById('add_{{each}}_form').classList.toggle('is-hidden')">
+                    <span class="icon is-small"><i class="far fa-edit"></i></span>
+                </a>
+                {{each.content}}
+                <div class="is-pulled right"> Due:{{each.duedate}} </div>
+                <form action="/tdi/{{each.id}}/update/" class="is-hidden" id="add_{{each}}_form" method="post">
+                    {% csrf_token %}
+                    <div class="field">
+                        <div class="control">
+                            <input maxlength="50" id="id_content" class="input" type="text" name="content" required
+                                placeholder="">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <label for="id_duedate">Duedate:</label>
+                            <input id="id_duedate" class="input" todayLabel='Today' type="date" name="duedate" required
+                                value="{{each.duedate}}" placeholder="">
+                        </div>
+                    </div>
+                    <button class="button is-info" type="submit" value="Update">Update</button>
+                </form>
             </li>
             {% empty %}
             nothing to see here
             {% endfor %}
+            <div class="box">
+                <form action="/tdi/add/{{list_in_focus.id}}/" method="POST">
+                    {% csrf_token %}
+                    <tr>
+                        <td><select class="is-hidden" name="tdlist" required id="id_tdlist">
+                                <option value="{{list_in_focus.id}}"></option>
+                            </select></td>
+                    </tr>
+                    <tr>
+                        <th><label for="id_content">Content:</label></th>
+                        <td><input type="text" name="content" required></td>
+                    </tr>
+                    <tr>
+                        <th><label for="id_duedate">Duedate:</label></th>
+                        <td><input type="text" name="duedate" value="2020-03-09 18:00:00" required id="id_duedate"></td>
+                    </tr>
+                    <button class="button" type="submit" value="save"> Submit </button>
+                </form>
+            </div>
         </ul>
     </div>
-    <div class="box">
-        <form action="/tdi/add/{{list_in_focus.id}}/" method="POST">
-            {% csrf_token %}
-            <tr>
-                <td><select class="is-hidden" name="tdlist" required id="id_tdlist">
-                        <option value="{{list_in_focus.id}}"></option>
-                    </select></td>
-            </tr>
-            <tr>
-                <th><label for="id_content">Content:</label></th>
-                <td><input type="text" name="content" maxlength="50" required id="id_content"></td>
-            </tr>
-            <tr>
-                <th><label for="id_duedate">Duedate:</label></th>
-                <td><input type="text" name="duedate" value="2020-03-09 18:00:00" required id="id_duedate"></td>
-            </tr>
-            <button class="button" type="submit" value="save"> Submit </button>
-        </form>
-    </div>
 </div>
+
+
 {% endblock sctn1 %}

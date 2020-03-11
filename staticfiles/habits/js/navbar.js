@@ -25,14 +25,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
-let status = "off";
-function navdropdown() {
-    if (status == "off") {
-        document.getElementById('navdropdown').classList.remove("is-hidden");
-        return status = "on";
-    } else {
-        document.getElementById('navdropdown').classList.add("is-hidden");
-        return status = "off";
-    }
-};
+
 

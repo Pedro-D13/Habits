@@ -1,16 +1,6 @@
 {% extends 'habits/base.html'%}
 
 {%block content %}
-{% if user.is_authenticated %}
-
-<div class="section">
-
-    DashBoard
-
-</div>
-
-{% else %}
-
 
 <!-- Hero Intro -->
 <section class="hero">
@@ -26,6 +16,17 @@
     </div>
 </section>
 <!-- End intro -->
+{% if user.is_authenticated %}
+<section class="hero">
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title">
+                DashBoard
+            </h1>
+        </div>
+    </div>
+</section>
+{% else %}
 
 <!-- Content section -->
 <section class="hero is-medium is-primary is-bold">

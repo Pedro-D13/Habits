@@ -14,8 +14,7 @@
     {% load django_simple_bulma %}
     {% bulma %}
     {% font_awesome %}
-    <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.9.95/css/materialdesignicons.min.css
-">
+    <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.9.95/css/materialdesignicons.min.css">
 </head>
 <!-- Navigation block -->
 
@@ -33,9 +32,6 @@
             <span aria-hidden="true"></span>
         </a>
     </div>
-
-
-
     <div id="navbarBasicExample" class="navbar-menu">
         <div class="navbar-start">
             <a href="{% url 'habits:homepage' %}" class="navbar-item">
@@ -51,11 +47,11 @@
             <a href="{%  url 'tdl:tdl_list' %}" class="navbar-item">
                 To Do List
             </a>
-            <div class="navbar-item has-dropdown">
-                <a class="navbar-link" onclick="navdropdown()">
+            <div class="navbar-item has-dropdown" id='menudropdown'>
+                <a class="navbar-link">
                     More
                 </a>
-                <div class="navbar-dropdown is-hidden" id='navdropdown'>
+                <div class="navbar-dropdown " id='navdropdown'>
                     <a class="navbar-item">
                         Motivation
                     </a>

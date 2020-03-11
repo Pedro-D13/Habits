@@ -1,11 +1,8 @@
 {% extends 'habits/base.html' %}
 
 {% block title %}
-goal_list
+Goal list
 {% endblock title%}
-
-
-
 
 {% block sctn1 %}
 
@@ -13,17 +10,19 @@ goal_list
     <div class="Hero is-fluid">
         <div class="hero-body">
             <!-- Habits Column -->
-            <div class="content box">
+            <div class="box">
                 <small class="is-2"> Goals: {{user.profile.goal_set.count}}</small>
                 <br>
                 <small class="is-2"> Completed goals</small>
                 {% for goal in goals %}
-                <div class="notification is-light">
+                <div class="notification is-success">
                     <form class="container" action="/goal/{{goal.id}}/delete" method="POST">
                         {% csrf_token %}
                         <div class="is-success has-icons-left">
-                            <a id="goalupdatebtn" class="icon is-left has-text-info" style="text-decoration: none;"></a>
-                            <i class=" fas fa-pen"></i> </a>
+                            <a class="icon is-left has-text-info" style="text-decoration: none;"
+                                onclick="editgoaljs( {{goal.id}} )">
+                                <i class="fas fa-pen"></i>
+                            </a>
                             {{goal.goal_title | capfirst}} : {{goal.mantra |capfirst}}
                             <button class="delete is-danger" type="submit" value=""></button>
                         </div>
@@ -57,36 +56,38 @@ goal_list
                     </button>
                 </div>
                 {% endfor %}
-                <form class="level" action="/goal/add/" method="POST">
-                    {% csrf_token %}
-                    <div class="field is-horizontal">
-                        <div class="field-label is-normal">
-                            <label class="label" id="id_goal_title">Create a Goal</label>
-                        </div>
-                        <div class="field-body">
-                            <div class="field">
-                                <p class="control is-expanded">
-                                    <input class="input" type="text" placeholder="Goal" name="goal_title" maxlength="25"
-                                        required id="id_goal_title">
-                                </p>
-                            </div>
+                <div class="box">
+                    <form class="level" action="/goal/add/" method="POST">
+                        {% csrf_token %}
+                        <div class="field is-horizontal">
                             <div class="field-label is-normal">
-                                <label class="label" for="id_mantra">Mantra</label>
+                                <label class="label" id="id_goal_title">Create a Goal</label>
                             </div>
-                            <div class="field is-normal has-addons">
-                                <p class="control is-expanded">
-                                    <input class="input" type="text" placeholder="Mantra" value="" name="mantra"
-                                        required id="id_mantra">
-                                </p>
-                                <div class="control">
-                                    <button class="button is-info" value="Create" type="submit">
-                                        Submit
-                                    </button>
+                            <div class="field-body">
+                                <div class="field">
+                                    <p class="control is-expanded">
+                                        <input class="input" type="text" placeholder="Goal" name="goal_title"
+                                            maxlength="25" required id="id_goal_title">
+                                    </p>
+                                </div>
+                                <div class="field-label is-normal">
+                                    <label class="label" for="id_mantra">Mantra</label>
+                                </div>
+                                <div class="field is-normal has-addons">
+                                    <p class="control is-expanded">
+                                        <input class="input" type="text" placeholder="Mantra" value="" name="mantra"
+                                            required id="id_mantra">
+                                    </p>
+                                    <div class="control">
+                                        <button class="button is-info" value="Create" type="submit">
+                                            Submit
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

@@ -2,11 +2,16 @@ from django.db import models
 from datetime import datetime, timedelta
 from users.models import Profile
 from django.urls import reverse
+from django.conf import settings
+from django.utils.timezone import make_aware
 
 
 def Tomorrow():
+    settings.TIME_ZONE
     tmoz = datetime.today() + timedelta(days=1)
-    return tmoz.replace(hour=18, minute=0, second=0, microsecond=0)
+    tmoz = tmoz.replace(hour=18, minute=0, second=0, microsecond=0)
+    tmoz = make_aware(tmoz)
+    return tmoz
 
 
 class TDlist(models.Model):
@@ -29,6 +34,10 @@ class TDitem(models.Model):
 
     def get_absolute_url(self):
         return reverse('tdl:tdl_detail', kwargs={'pk': self.tdlist.id})
+
+    class Meta:
+        ordering = ['duedate']
+
 
 # class TDLsubtitle(models.Model):
 #     item = models.ForeignKey(TDLitem, on_delete=models.CASCADE)

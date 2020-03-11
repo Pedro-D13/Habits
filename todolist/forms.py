@@ -15,4 +15,4 @@ class TDItemForm(ModelForm):
 
     class Meta:
         model = TDitem
-        fields = ['tdlist', 'content', 'duedate']
+        fields = ['tdlist', 'content', 'duedate', 'status']

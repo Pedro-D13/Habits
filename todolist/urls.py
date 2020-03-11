@@ -3,7 +3,8 @@ from django.urls import path
 from todolist.views import (
     TDL_CreateView, TDLItemsListView,
     TDL_DeleteView, TDL_ListView,
-    TDL_UpdateView, TDLItems_CreateView, TDLItems_DeleteView)
+    TDL_UpdateView, TDLItems_CreateView,
+    TDLItems_DeleteView, TDLItem_UpdateView)
 
 
 app_name = 'tdl'
@@ -17,4 +18,5 @@ urlpatterns = [
     # Path
     path('tdi/add/<int:pk>/', TDLItems_CreateView.as_view(), name='tdi_create'),
     path('tdi/<int:pk>/delete/', TDLItems_DeleteView.as_view(), name='tdi_delete'),
+    path('tdi/<int:pk>/update/', TDLItem_UpdateView.as_view(), name='tdi_update'),
 ]

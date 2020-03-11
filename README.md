@@ -36,5 +36,7 @@ Credits
 
 ## Credit
 [Django-simple-bulma](https://github.com/python-discord/django-simple-bulma)
+Easy to use and a well functioning project, enabling me to implement a nice design and colour scheme to my frontend.
+
 
 
