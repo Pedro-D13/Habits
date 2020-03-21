@@ -1,0 +1,19 @@
+{% extends 'habits/base.html' %}
+
+{% block sctn1 %}
+
+<div id="app">
+    [[message]]
+</div>
+
+<script>
+    var app = new Vue({
+        delemiters: "[[]]",
+        el: '#app',
+        data: {
+            message: 'Hello Vue!'
+        }
+    })
+
+</script>
+{% endblock sctn1 %}

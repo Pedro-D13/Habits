@@ -1,5 +1,6 @@
 from django.urls import path
 from habits_tracker import views
+
 from .views import (GoalCreateView, GoalListView,
                     GoalUpdateView, GoalDeleteView,
                     GoalDetailView)

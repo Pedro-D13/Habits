@@ -17,15 +17,22 @@ Including another URLconf
 import habits_tracker.urls
 import todolist.urls
 
-
 from django.contrib import admin
 # note imported as auth_views
-
 from django.contrib.auth import views as auth_views
 from django.urls import path, include
 
 # note import as user_views
 from users import views as user_views
+
+from rest_framework import routers
+from users.views import UserViewSet, GroupViewSet
+
+
+router = routers.DefaultRouter()
+router.register(r'users', UserViewSet)
+router.register(r'groups', GroupViewSet)
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -41,6 +48,12 @@ urlpatterns = [
          auth_views.PasswordResetConfirmView.as_view(template_name='users/password_reset_confirm.html'), name='password_reset_confirm'),
     path('password-reset-complete/',
          auth_views.PasswordResetCompleteView.as_view(template_name='users/password_reset_complete.html'), name='password_reset_complete'),
-    path('', include('habits_tracker.urls')),
-    path('', include('todolist.urls')),
+    # path('', include('habits_tracker.urls')),
+    # path('', include('todolist.urls')),
+
+]
+
+urlpatterns += [
+    path('', include(router.urls)),
+    path('api-auth/', include('rest_framework.urls')),
 ]
