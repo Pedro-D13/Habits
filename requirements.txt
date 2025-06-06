@@ -3,7 +3,7 @@ asgiref==3.2.3
 autopep8==1.5
 backcall==0.1.0
 decorator==4.4.1
-Django==3.0.4
+Django==4.2.22
 django-simple-bulma==1.2.0
 djangorestframework==3.11.0
 ipython==7.16.3
